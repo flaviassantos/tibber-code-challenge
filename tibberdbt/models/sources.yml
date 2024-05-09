@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+  - name: TIBBER
+    database: TIBBER
+    schema: RAW
+    tables:
+      - name: CUSTOMERS
+        identifier: CUSTOMERS
+      - name: STORE_ORDERS
+        identifier: STORE_ORDERS
+      - name: SUBSCRIPTIONS
+        identifier: SUBSCRIPTIONS
