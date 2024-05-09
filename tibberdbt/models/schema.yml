@@ -1,0 +1,33 @@
+version: 2
+
+models:
+  - name: mart__dim_customer
+    columns:
+      - name: customer_id
+        tests:
+          - not_null
+          - unique
+
+  - name: mart__dim_product
+    columns:
+      - name: product_id
+        tests:
+          - not_null
+          - unique
+
+  - name: mart__dim_calendar
+    columns:
+      - name: date_day
+        tests:
+          - not_null
+          - unique
+
+  - name: mart__fct_order
+    columns:
+      - name: order_line_id
+        tests:
+          - not_null
+          - unique
+      - name: order_id
+        tests:
+          - not_null
