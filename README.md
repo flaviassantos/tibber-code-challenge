@@ -13,7 +13,7 @@ I had a lot of fun taking part in this case. Following are the deliverables (a v
   
     * Star Model Diagram 
    
-   ![Star Model Diagram](./images/StarModel.PNG)
+   ![Star Model Diagram](./images/StarModel.png)
 
 
 ***
