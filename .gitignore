@@ -1,0 +1,12 @@
+.DS_Store
+logs/
+venv/
+seeds/
+target/
+.vscode
+dbt_packages/
+package-lock.yml
+
+**/__pycache__/
+*.pyc
+tmp*/
