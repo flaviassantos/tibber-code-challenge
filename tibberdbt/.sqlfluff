@@ -1,0 +1,42 @@
+# https://docs.sqlfluff.com/en/stable/rules.html
+
+[sqlfluff]
+dialect = snowflake
+templater = dbt
+max_line_length = 160
+exclude_rules = LT08, ST06, CV06, AL05, L057
+
+[sqlfluff:templater:dbt]
+project_dir = ./
+
+[sqlfluff:layout:type:comma]
+line_position = leading
+
+[sqlfluff:indentation]
+indent_unit = space
+tab_space_size = 4
+indented_joins = False
+indented_using_on = True
+template_blocks_indent = False
+
+[sqlfluff:rules:aliasing.table]
+aliasing = explicit
+
+[sqlfluff:rules:aliasing.column]
+aliasing = explicit
+
+# Join/From clauses should not contain subqueries. Use CTEs instead.
+[sqlfluff:rules:structure.subquery]
+forbid_subquery_in = both
+
+[sqlfluff:rules:capitalisation.keywords]
+capitalisation_policy = lower
+
+[sqlfluff:rules:capitalisation.identifiers]
+extended_capitalisation_policy = lower
+
+[sqlfluff:rules:capitalisation.functions]
+extended_capitalisation_policy = lower
+
+[sqlfluff:rules:capitalisation.types]
+extended_capitalisation_policy = lower
