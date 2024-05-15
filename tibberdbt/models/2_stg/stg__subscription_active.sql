@@ -2,7 +2,7 @@
   config(
     materialized = 'ephemeral'
     )
-}} 
+}}
 
 with subscriptions as (
     select
