@@ -1,0 +1,43 @@
+name: Our first dbt PR job
+
+on:
+  pull_request:
+    types:
+    - opened
+    - reopened
+    - synchronize
+    - ready_for_review
+  push:
+    branches:
+      - '!master'
+
+jobs:
+  dbt_ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Set Up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.11.6'
+
+      - name: Install requirements
+        run: pip install -r requirements.txt  
+
+      - name: Install dbt dependencies
+        run: "cd tibberdbt; dbt deps"
+
+      - name: dbt build
+        run: "cd tibberdbt; dbt build --full-refresh --profiles-dir ./"
+        env:
+          SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
+          SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
+          SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
+          SNOWFLAKE_ROLE: ${{ secrets.SNOWFLAKE_ROLE }}
+          SNOWFLAKE_SCHEMA: ${{ secrets.SNOWFLAKE_SCHEMA }} 
+
+      - name: Fix models
+        run: "cd tibberdbt; sqlfluff lint models"

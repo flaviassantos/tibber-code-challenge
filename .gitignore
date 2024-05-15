@@ -10,3 +10,4 @@ package-lock.yml
 **/__pycache__/
 *.pyc
 tmp*/
+.user.yml
