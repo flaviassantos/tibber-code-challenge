@@ -28,7 +28,7 @@ jobs:
         run: pip install -r requirements.txt  
 
       - name: Install dbt dependencies
-        run: dbt deps
+        run: "cd tibberdbt; dbt deps"
 
       - name: dbt build
         run: dbt build --full-refresh --profiles-dir ./
@@ -40,4 +40,4 @@ jobs:
           SNOWFLAKE_SCHEMA: ${{ secrets.SNOWFLAKE_SCHEMA }} 
 
       - name: Fix models
-        run: "cd tibberdbt; sqlfluff lint models"
+        run: "sqlfluff lint models"
